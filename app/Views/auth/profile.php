@@ -2,14 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<?php
-      $n=1;
-      foreach ($user as $row) {
-?>
-<p><?=$row['id']?>-<?=$row['fname']?>-<?=$row['profile']?></p>
-<?php
-      }
-?>
 
 <div class="columns is-mobile is-centered">
     <div class="column is-narrow">
