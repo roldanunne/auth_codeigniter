@@ -14,14 +14,21 @@ class SearchController extends BaseController
 
     public function search()
     {  
+        $type = $this->request->getVar('type');
         $search = $this->request->getVar('search');
+        
+        session()->set('type',$type);
 
         $session = session();
         // Set up and execute the curl process
         $curl = curl_init();
 
+        $url = 'https://pixabay.com/api/';
+        if($type=='videos'){
+            $url = 'https://pixabay.com/api/videos/';
+        }
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://pixabay.com/api/?key=44974626-86371b20f6a6d49c2477b8356&q=".$search,
+            CURLOPT_URL => $url."?key=44974626-86371b20f6a6d49c2477b8356&q=".$search,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_ENCODING => "",
@@ -40,8 +47,8 @@ class SearchController extends BaseController
 
         // die($result);
         session()->set('result',$response);
-        // if(count($response)){
-        //     $session->setFlashdata('success', 'Has data');
+        // if($result){
+        //     $session->setFlashdata('success', 'Has data'.$type);
         // } else {
         //     $session->setFlashdata('success', 'No Data');
         // }
