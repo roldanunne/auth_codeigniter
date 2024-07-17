@@ -1,0 +1,8 @@
+<?php
+      $n=1;
+      foreach ($user as $row) {
+?>
+<p><?=$row['id']?>-<?=$row['fname']?>-<?=$row['email']?></p>
+<?php
+      }
+?>
